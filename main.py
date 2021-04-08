@@ -1,29 +1,24 @@
-from Models import Employees, PyObjectId
-from fastapi import FastAPI
+from models import Employees
+from fastapi import FastAPI, HTTPException
 from pymongo import MongoClient
-import pymongo
+from models import connections
 
-employers = MongoClient('0.0.0.0', 55001)
+employers = connections()
 db = employers['employees']
-series_collection = db['series']
 
 app = FastAPI()
 
 
-@app.get('/employers')
-async def list_employees():
-    employers = []
-    for employees in db.employees.find():
-        employers.append(Employees(**employees))
-    return {'employers': employers}
+@app.get("/")
+async def root():
+    return {"message": "Hello"}
 
 
-@app.get('/employers/{id}')
-async def employees(id):
-    employees = []
-    for employ in db.employees.find_document(series_collection):
-        # print(employ)
-        print(type(employ))
-        if employ == {id}:
-            employees.append(employ)
-    return {"employees": employees}
+@app.get('/employees/')
+async def employees():
+    list_employees = []
+    for employ in db.employees.find():
+        list_employees.append(Employees(**employ))
+    if not list_employees:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {'list_employees': list_employees}
