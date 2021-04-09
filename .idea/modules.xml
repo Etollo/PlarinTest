@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FastAPI and MongoDB.iml" filepath="$PROJECT_DIR$/.idea/FastAPI and MongoDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PlarinTest/.idea/PlarinTest.iml" filepath="$PROJECT_DIR$/../PlarinTest/.idea/PlarinTest.iml" />
     </modules>
   </component>
 </project>

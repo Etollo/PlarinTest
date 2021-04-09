@@ -1,0 +1,10 @@
+fastapi:
+  debug: true
+
+databases:
+  default:
+    ENGINE: 'mongodb'
+    DRIVER: 'pymongo'
+    NAME: 'employees'
+    HOST: 'mongo'
+    PORT: 27017

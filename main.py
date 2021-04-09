@@ -1,10 +1,7 @@
 from models import Employees
 from fastapi import FastAPI, HTTPException
 from pymongo import MongoClient
-from models import connections
-
-employers = connections()
-db = employers['employees']
+from config.config import DB
 
 app = FastAPI()
 
@@ -17,7 +14,7 @@ async def root():
 @app.get('/employees/')
 async def employees():
     list_employees = []
-    for employ in db.employees.find():
+    for employ in DB.employees.find():
         list_employees.append(Employees(**employ))
     if not list_employees:
         raise HTTPException(status_code=404, detail="Item not found")

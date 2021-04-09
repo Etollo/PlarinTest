@@ -1,17 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel, Field
 from bson import ObjectId
-from pymongo import MongoClient
-
 from dependencies import PyObjectId
-
-
-def connections():
-    try:
-        employers = MongoClient('0.0.0.0', 55001)
-        return employers
-    except ConnectionError:
-        print("Ошибка подключения к БД")
 
 
 class Employees(BaseModel):
