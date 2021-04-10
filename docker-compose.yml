@@ -4,7 +4,7 @@ volumes:
 services:
   plarintest:
     build: .
-    command: uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - ./plarintest:/PlarinTest
     ports:
@@ -15,6 +15,6 @@ services:
     image: mongo
     restart: always
     volumes:
-        - mongo_data:/data/db
+        - /Users/egor/data:/data/db
     ports:
       - "27017:27017"
