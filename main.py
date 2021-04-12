@@ -1,16 +1,19 @@
-from models import Employees
 from fastapi import FastAPI, HTTPException
-from pymongo import MongoClient
-from config.config import DB
 
+from config.config import DB
+from models import Employees
+
+# Инициализация фреймворка
 app = FastAPI()
 
 
+# Метод получения данных из корня программы
 @app.get("/")
 async def root():
     return {"message": "Hello"}
 
 
+# Метод получения данных о всех работниках из базы данных
 @app.get('/employees/')
 async def employees():
     list_employees = []

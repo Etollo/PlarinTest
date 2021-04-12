@@ -7,6 +7,7 @@ from main import app
 client = TestClient(app)
 
 
+# Инициализирует серверный сокет
 @pytest.yield_fixture
 def socket():
     _socket = s.socket(s.AF_INET, s.SOCK_STREAM)
@@ -14,17 +15,20 @@ def socket():
     _socket.close()
 
 
+# Проверка установленного соединения с сервером
 def test_server_connect(socket):
     socket.connect(('0.0.0.0', 8000))
     assert socket
 
 
+# Проверка данных из корня программы
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello"}
 
 
+# Проверка на идентичность данных полученных из БД и в следствии запроса по API
 def test_read_item():
     response = client.get("/employees/")
     employees = []
@@ -35,6 +39,7 @@ def test_read_item():
     assert response.json() == {'list_employees': employees}
 
 
+# Проверка, неверно указанного адреса, получения данных
 def test_read_inexistent_item():
     response = client.get("/employee/")
     assert response.status_code == 404

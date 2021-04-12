@@ -1,6 +1,7 @@
-import json
 import yaml
 from pymongo import MongoClient
+
+# Настройка конфигураций для подключения и работы с MongoDB
 
 
 def load_config() -> dict:
