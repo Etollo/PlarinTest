@@ -15,6 +15,6 @@ services:
     image: mongo
     restart: always
     volumes:
-        - /Users/egor/data:/data/db
+        - /data/db:/data/db
     ports:
       - "27017:27017"
